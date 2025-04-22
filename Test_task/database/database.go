@@ -3,6 +3,7 @@ package database
 import (
 	"database/sql"
 	"fmt"
+	"os"
 	"time"
 
 	"github.com/google/uuid"
@@ -16,7 +17,7 @@ type DataBase struct {
 
 // Establishes a connection to the database
 func ConnectedDatabase() DataBase {
-	connStr := fmt.Sprintf("user=postgres password=%s dbname=user_info sslmode=disable", "8937367iii")
+	connStr := fmt.Sprintf("user=postgres password=%s dbname=user_info sslmode=disable", os.Getenv("password"))
 	db, err := sql.Open("postgres", connStr)
 	if err != nil {
 		panic(err)
